@@ -1,5 +1,10 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext {
+        map4dmap_version = "2.0.3"
+        map4dtype_version = "1.1.0"
+    }
+
     repositories {
         google()
         mavenCentral()
