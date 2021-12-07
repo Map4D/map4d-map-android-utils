@@ -4,8 +4,11 @@ dependencyResolutionManagement {
         google()
         mavenCentral()
         jcenter() // Warning: this repository is going to shut down soon
+        maven {
+            url = "https://packages.map4d.vn/repository/maven-public"
+        }
     }
 }
-rootProject.name = "AndroidMap4DUtilsDemo"
+rootProject.name = "android-map4d-utils"
 include ':demo'
-include ':library'
+include ':Map4dUtils'
