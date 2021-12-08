@@ -11,4 +11,4 @@ dependencyResolutionManagement {
 }
 rootProject.name = "android-map4d-utils"
 include ':demo'
-include ':Map4dUtils'
+include ':Map4dMapUtils'
