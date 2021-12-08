@@ -50,7 +50,7 @@ def getVersion = { ->
 }
 
 def getArtifactId = { ->
-    def module = project //project('Map4dTypes');
+    def module = project //project('Map4dMapUtils');
     module.setVersion(getVersion())
     return module.getName()
 }

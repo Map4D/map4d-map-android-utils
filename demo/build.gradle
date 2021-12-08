@@ -43,7 +43,7 @@ dependencies {
     //map4d
     implementation "vn.map4d:Map4dTypes:$map4dtype_version"
     implementation "vn.map4d:Map4dMap:$map4dmap_version"
-    implementation project(':Map4dUtils')
+    implementation project(':Map4dMapUtils')
 
 
     testImplementation 'junit:junit:4.+'
