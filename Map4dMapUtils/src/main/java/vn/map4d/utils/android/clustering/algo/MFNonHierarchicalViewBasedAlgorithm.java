@@ -8,7 +8,7 @@ import vn.map4d.types.MFLocationCoordinate;
 import vn.map4d.utils.android.clustering.MFClusterItem;
 import vn.map4d.utils.android.geometry.Bounds;
 import vn.map4d.utils.android.geometry.Point;
-import vn.map4d.utils.android.projection.SphericalMercatorProjection;
+import vn.map4d.utils.android.projection.MFSphericalMercatorProjection;
 import vn.map4d.utils.android.quadtree.PointQuadTree;
 
 /**
@@ -17,10 +17,10 @@ import vn.map4d.utils.android.quadtree.PointQuadTree;
  *
  * @param <T>
  */
-public class NonHierarchicalViewBasedAlgorithm<T extends MFClusterItem>
-  extends NonHierarchicalDistanceBasedAlgorithm<T> implements ScreenBasedAlgorithm<T> {
+public class MFNonHierarchicalViewBasedAlgorithm<T extends MFClusterItem>
+  extends MFNonHierarchicalDistanceBasedAlgorithm<T> implements MFScreenBasedAlgorithm<T> {
 
-  private static final SphericalMercatorProjection PROJECTION = new SphericalMercatorProjection(1);
+  private static final MFSphericalMercatorProjection PROJECTION = new MFSphericalMercatorProjection(1);
 
   private int mViewWidth;
   private int mViewHeight;
@@ -31,7 +31,7 @@ public class NonHierarchicalViewBasedAlgorithm<T extends MFClusterItem>
    * @param screenWidth  map width in dp
    * @param screenHeight map height in dp
    */
-  public NonHierarchicalViewBasedAlgorithm(int screenWidth, int screenHeight) {
+  public MFNonHierarchicalViewBasedAlgorithm(int screenWidth, int screenHeight) {
     mViewWidth = screenWidth;
     mViewHeight = screenHeight;
   }

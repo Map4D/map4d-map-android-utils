@@ -13,7 +13,7 @@ import vn.map4d.utils.android.clustering.MFCluster;
 import vn.map4d.utils.android.clustering.MFClusterItem;
 import vn.map4d.utils.android.geometry.Bounds;
 import vn.map4d.utils.android.geometry.Point;
-import vn.map4d.utils.android.projection.SphericalMercatorProjection;
+import vn.map4d.utils.android.projection.MFSphericalMercatorProjection;
 import vn.map4d.utils.android.quadtree.PointQuadTree;
 
 /**
@@ -29,9 +29,9 @@ import vn.map4d.utils.android.quadtree.PointQuadTree;
  * <p/>
  * Clusters have the center of the first element (not the centroid of the items within it).
  */
-public class NonHierarchicalDistanceBasedAlgorithm<T extends MFClusterItem> extends AbstractAlgorithm<T> {
+public class MFNonHierarchicalDistanceBasedAlgorithm<T extends MFClusterItem> extends MFAbstractAlgorithm<T> {
   private static final int DEFAULT_MAX_DISTANCE_AT_ZOOM = 100; // essentially 100 dp.
-  private static final SphericalMercatorProjection PROJECTION = new SphericalMercatorProjection(1);
+  private static final MFSphericalMercatorProjection PROJECTION = new MFSphericalMercatorProjection(1);
   /**
    * Any modifications should be synchronized on mQuadTree.
    */

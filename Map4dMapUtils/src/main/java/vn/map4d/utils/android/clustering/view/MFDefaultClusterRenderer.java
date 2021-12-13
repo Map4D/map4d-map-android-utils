@@ -52,9 +52,9 @@ import vn.map4d.utils.android.clustering.MFClusterItem;
 import vn.map4d.utils.android.clustering.MFClusterManager;
 import vn.map4d.utils.android.collections.MFMarkerManager;
 import vn.map4d.utils.android.geometry.Point;
-import vn.map4d.utils.android.projection.SphericalMercatorProjection;
-import vn.map4d.utils.android.ui.IconGenerator;
-import vn.map4d.utils.android.ui.SquareTextView;
+import vn.map4d.utils.android.projection.MFSphericalMercatorProjection;
+import vn.map4d.utils.android.ui.MFIconGenerator;
+import vn.map4d.utils.android.ui.MFSquareTextView;
 
 /**
  * The default view for a ClusterManager. Markers are animated in and out of clusters.
@@ -63,7 +63,7 @@ public class MFDefaultClusterRenderer<T extends MFClusterItem> implements MFClus
   private static final int[] BUCKETS = {10, 20, 50, 100, 200, 500, 1000};
   private static final TimeInterpolator ANIMATION_INTERP = new DecelerateInterpolator();
   private final Map4D mMap;
-  private final IconGenerator mIconGenerator;
+  private final MFIconGenerator mIconGenerator;
   private final MFClusterManager<T> mClusterManager;
   private final float mDensity;
   private final Executor mExecutor = Executors.newSingleThreadExecutor();
@@ -110,7 +110,7 @@ public class MFDefaultClusterRenderer<T extends MFClusterItem> implements MFClus
     mMap = map;
     mAnimate = true;
     mDensity = context.getResources().getDisplayMetrics().density;
-    mIconGenerator = new IconGenerator(context);
+    mIconGenerator = new MFIconGenerator(context);
     mIconGenerator.setContentView(makeSquareTextView(context));
     mIconGenerator.setTextAppearance(R.style.amu_ClusterIcon_TextAppearance);
     mIconGenerator.setBackground(makeClusterBackground());
@@ -194,8 +194,8 @@ public class MFDefaultClusterRenderer<T extends MFClusterItem> implements MFClus
     return background;
   }
 
-  private SquareTextView makeSquareTextView(Context context) {
-    SquareTextView squareTextView = new SquareTextView(context);
+  private MFSquareTextView makeSquareTextView(Context context) {
+    MFSquareTextView squareTextView = new MFSquareTextView(context);
     ViewGroup.LayoutParams layoutParams = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
     squareTextView.setLayoutParams(layoutParams);
     squareTextView.setId(R.id.amu_text);
@@ -665,7 +665,7 @@ public class MFDefaultClusterRenderer<T extends MFClusterItem> implements MFClus
     final Set<? extends MFCluster<T>> clusters;
     private Runnable mCallback;
     private MFProjection mProjection;
-    private SphericalMercatorProjection mSphericalMercatorProjection;
+    private MFSphericalMercatorProjection mSphericalMercatorProjection;
     private double mMapZoom;
 
     private RenderTask(Set<? extends MFCluster<T>> clusters) {
@@ -687,7 +687,7 @@ public class MFDefaultClusterRenderer<T extends MFClusterItem> implements MFClus
 
     public void setMapZoom(double zoom) {
       this.mMapZoom = zoom;
-      this.mSphericalMercatorProjection = new SphericalMercatorProjection(256 * Math.pow(2, Math.min(zoom, mZoom)));
+      this.mSphericalMercatorProjection = new MFSphericalMercatorProjection(256 * Math.pow(2, Math.min(zoom, mZoom)));
     }
 
     @SuppressLint("NewApi")

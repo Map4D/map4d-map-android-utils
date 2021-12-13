@@ -9,7 +9,7 @@ import vn.map4d.utils.android.clustering.MFClusterItem;
 /**
  * Logic for computing clusters
  */
-public interface Algorithm<T extends MFClusterItem> {
+public interface MFAlgorithm<T extends MFClusterItem> {
 
   /**
    * Adds an item to the algorithm

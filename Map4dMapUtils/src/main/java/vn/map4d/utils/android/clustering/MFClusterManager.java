@@ -11,11 +11,11 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import vn.map4d.map.annotations.MFMarker;
 import vn.map4d.map.camera.MFCameraPosition;
 import vn.map4d.map.core.Map4D;
-import vn.map4d.utils.android.clustering.algo.Algorithm;
-import vn.map4d.utils.android.clustering.algo.NonHierarchicalDistanceBasedAlgorithm;
-import vn.map4d.utils.android.clustering.algo.PreCachingAlgorithmDecorator;
-import vn.map4d.utils.android.clustering.algo.ScreenBasedAlgorithm;
-import vn.map4d.utils.android.clustering.algo.ScreenBasedAlgorithmAdapter;
+import vn.map4d.utils.android.clustering.algo.MFAlgorithm;
+import vn.map4d.utils.android.clustering.algo.MFNonHierarchicalDistanceBasedAlgorithm;
+import vn.map4d.utils.android.clustering.algo.MFPreCachingAlgorithmDecorator;
+import vn.map4d.utils.android.clustering.algo.MFScreenBasedAlgorithm;
+import vn.map4d.utils.android.clustering.algo.MFScreenBasedAlgorithmAdapter;
 import vn.map4d.utils.android.clustering.view.MFClusterRenderer;
 import vn.map4d.utils.android.clustering.view.MFDefaultClusterRenderer;
 import vn.map4d.utils.android.collections.MFMarkerManager;
@@ -35,7 +35,7 @@ public class MFClusterManager<T extends MFClusterItem> implements
   private final MFMarkerManager.Collection mMarkers;
   private final MFMarkerManager.Collection mClusterMarkers;
   private final ReadWriteLock mClusterTaskLock = new ReentrantReadWriteLock();
-  private ScreenBasedAlgorithm<T> mAlgorithm;
+  private MFScreenBasedAlgorithm<T> mAlgorithm;
   private MFClusterRenderer<T> mRenderer;
   private Map4D mMap;
   private MFCameraPosition mPreviousCameraPosition;
@@ -57,8 +57,8 @@ public class MFClusterManager<T extends MFClusterItem> implements
     mClusterMarkers = markerManager.newCollection();
     mMarkers = markerManager.newCollection();
     mRenderer = new MFDefaultClusterRenderer<>(context, map, this);
-    mAlgorithm = new ScreenBasedAlgorithmAdapter<>(new PreCachingAlgorithmDecorator<>(
-      new NonHierarchicalDistanceBasedAlgorithm<T>()));
+    mAlgorithm = new MFScreenBasedAlgorithmAdapter<>(new MFPreCachingAlgorithmDecorator<>(
+      new MFNonHierarchicalDistanceBasedAlgorithm<T>()));
 
     mClusterTask = new ClusterTask();
     mRenderer.onAdd();
@@ -101,22 +101,22 @@ public class MFClusterManager<T extends MFClusterItem> implements
     cluster();
   }
 
-  public Algorithm<T> getAlgorithm() {
+  public MFAlgorithm<T> getAlgorithm() {
     return mAlgorithm;
   }
 
-  public void setAlgorithm(Algorithm<T> algorithm) {
-    if (algorithm instanceof ScreenBasedAlgorithm) {
-      setAlgorithm((ScreenBasedAlgorithm<T>) algorithm);
+  public void setAlgorithm(MFAlgorithm<T> algorithm) {
+    if (algorithm instanceof MFScreenBasedAlgorithm) {
+      setAlgorithm((MFScreenBasedAlgorithm<T>) algorithm);
     } else {
-      setAlgorithm(new ScreenBasedAlgorithmAdapter<>(algorithm));
+      setAlgorithm(new MFScreenBasedAlgorithmAdapter<>(algorithm));
     }
   }
 
-  public void setAlgorithm(ScreenBasedAlgorithm<T> algorithm) {
+  public void setAlgorithm(MFScreenBasedAlgorithm<T> algorithm) {
     algorithm.lock();
     try {
-      final Algorithm<T> oldAlgorithm = getAlgorithm();
+      final MFAlgorithm<T> oldAlgorithm = getAlgorithm();
       mAlgorithm = algorithm;
 
       if (oldAlgorithm != null) {
@@ -143,7 +143,7 @@ public class MFClusterManager<T extends MFClusterItem> implements
    * {@link #cluster()} for the map to be cleared.
    */
   public void clearItems() {
-    final Algorithm<T> algorithm = getAlgorithm();
+    final MFAlgorithm<T> algorithm = getAlgorithm();
     algorithm.lock();
     try {
       algorithm.clearItems();
@@ -160,7 +160,7 @@ public class MFClusterManager<T extends MFClusterItem> implements
    * @return true if the cluster manager contents changed as a result of the call
    */
   public boolean addItems(Collection<T> items) {
-    final Algorithm<T> algorithm = getAlgorithm();
+    final MFAlgorithm<T> algorithm = getAlgorithm();
     algorithm.lock();
     try {
       return algorithm.addItems(items);
@@ -177,7 +177,7 @@ public class MFClusterManager<T extends MFClusterItem> implements
    * @return true if the cluster manager contents changed as a result of the call
    */
   public boolean addItem(T myItem) {
-    final Algorithm<T> algorithm = getAlgorithm();
+    final MFAlgorithm<T> algorithm = getAlgorithm();
     algorithm.lock();
     try {
       return algorithm.addItem(myItem);
@@ -194,7 +194,7 @@ public class MFClusterManager<T extends MFClusterItem> implements
    * @return true if the cluster manager contents changed as a result of the call
    */
   public boolean removeItems(Collection<T> items) {
-    final Algorithm<T> algorithm = getAlgorithm();
+    final MFAlgorithm<T> algorithm = getAlgorithm();
     algorithm.lock();
     try {
       return algorithm.removeItems(items);
@@ -211,7 +211,7 @@ public class MFClusterManager<T extends MFClusterItem> implements
    * @return true if the item was removed from the cluster manager as a result of this call
    */
   public boolean removeItem(T item) {
-    final Algorithm<T> algorithm = getAlgorithm();
+    final MFAlgorithm<T> algorithm = getAlgorithm();
     algorithm.lock();
     try {
       return algorithm.removeItem(item);
@@ -229,7 +229,7 @@ public class MFClusterManager<T extends MFClusterItem> implements
    * contained within the cluster manager and the cluster manager contents are unchanged
    */
   public boolean updateItem(T item) {
-    final Algorithm<T> algorithm = getAlgorithm();
+    final MFAlgorithm<T> algorithm = getAlgorithm();
     algorithm.lock();
     try {
       return algorithm.updateItem(item);
@@ -402,7 +402,7 @@ public class MFClusterManager<T extends MFClusterItem> implements
   private class ClusterTask extends AsyncTask<Double, Void, Set<? extends MFCluster<T>>> {
     @Override
     protected Set<? extends MFCluster<T>> doInBackground(Double... zoom) {
-      final Algorithm<T> algorithm = getAlgorithm();
+      final MFAlgorithm<T> algorithm = getAlgorithm();
       algorithm.lock();
       try {
         return algorithm.getClusters(zoom[0]);

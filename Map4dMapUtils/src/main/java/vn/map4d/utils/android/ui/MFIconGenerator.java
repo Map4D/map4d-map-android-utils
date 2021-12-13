@@ -22,7 +22,7 @@ import vn.map4d.utils.android.R;
  * <p/>
  * This class is not thread safe.
  */
-public class IconGenerator {
+public class MFIconGenerator {
   public static final int STYLE_DEFAULT = 1;
   public static final int STYLE_WHITE = 2;
   public static final int STYLE_RED = 3;
@@ -32,22 +32,22 @@ public class IconGenerator {
   public static final int STYLE_ORANGE = 7;
   private final Context mContext;
   private ViewGroup mContainer;
-  private RotationLayout mRotationLayout;
+  private MFRotationLayout mRotationLayout;
   private TextView mTextView;
   private View mContentView;
   private int mRotation;
   private float mAnchorU = 0.5f;
   private float mAnchorV = 1f;
-  private BubbleDrawable mBackground;
+  private MFBubbleDrawable mBackground;
 
   /**
    * Creates a new IconGenerator with the default style.
    */
-  public IconGenerator(Context context) {
+  public MFIconGenerator(Context context) {
     mContext = context;
-    mBackground = new BubbleDrawable(mContext);
+    mBackground = new MFBubbleDrawable(mContext);
     mContainer = (ViewGroup) LayoutInflater.from(mContext).inflate(R.layout.amu_text_bubble, null);
-    mRotationLayout = (RotationLayout) mContainer.getChildAt(0);
+    mRotationLayout = (MFRotationLayout) mContainer.getChildAt(0);
     mContentView = mTextView = (TextView) mRotationLayout.findViewById(R.id.amu_text);
     setStyle(STYLE_DEFAULT);
   }

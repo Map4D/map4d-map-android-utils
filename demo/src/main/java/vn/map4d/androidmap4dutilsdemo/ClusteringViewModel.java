@@ -11,13 +11,13 @@ import java.util.List;
 
 import vn.map4d.androidmap4dutilsdemo.model.MyItem;
 import vn.map4d.types.MFLocationCoordinate;
-import vn.map4d.utils.android.clustering.algo.NonHierarchicalViewBasedAlgorithm;
+import vn.map4d.utils.android.clustering.algo.MFNonHierarchicalViewBasedAlgorithm;
 
 public class ClusteringViewModel extends ViewModel {
 
-  private NonHierarchicalViewBasedAlgorithm<MyItem> mAlgorithm = new NonHierarchicalViewBasedAlgorithm<>(0, 0);
+  private MFNonHierarchicalViewBasedAlgorithm<MyItem> mAlgorithm = new MFNonHierarchicalViewBasedAlgorithm<>(0, 0);
 
-  NonHierarchicalViewBasedAlgorithm<MyItem> getAlgorithm() {
+  MFNonHierarchicalViewBasedAlgorithm<MyItem> getAlgorithm() {
     return mAlgorithm;
   }
 
