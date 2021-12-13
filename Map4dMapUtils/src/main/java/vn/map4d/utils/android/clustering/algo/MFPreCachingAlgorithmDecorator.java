@@ -15,15 +15,15 @@ import vn.map4d.utils.android.clustering.MFClusterItem;
 /**
  * Optimistically fetch clusters for adjacent zoom levels, caching them as necessary.
  */
-public class PreCachingAlgorithmDecorator<T extends MFClusterItem> extends AbstractAlgorithm<T> {
-  private final Algorithm<T> mAlgorithm;
+public class MFPreCachingAlgorithmDecorator<T extends MFClusterItem> extends MFAbstractAlgorithm<T> {
+  private final MFAlgorithm<T> mAlgorithm;
 
   // TODO: evaluate maxSize parameter for LruCache.
   private final LruCache<Integer, Set<? extends MFCluster<T>>> mCache = new LruCache<Integer, Set<? extends MFCluster<T>>>(5);
   private final ReadWriteLock mCacheLock = new ReentrantReadWriteLock();
   private final Executor mExecutor = Executors.newCachedThreadPool();
 
-  public PreCachingAlgorithmDecorator(Algorithm<T> algorithm) {
+  public MFPreCachingAlgorithmDecorator(MFAlgorithm<T> algorithm) {
     mAlgorithm = algorithm;
   }
 

@@ -10,18 +10,18 @@ import android.widget.FrameLayout;
  * <p/>
  * May not work with padding.
  */
-public class RotationLayout extends FrameLayout {
+public class MFRotationLayout extends FrameLayout {
   private int mRotation;
 
-  public RotationLayout(Context context) {
+  public MFRotationLayout(Context context) {
     super(context);
   }
 
-  public RotationLayout(Context context, AttributeSet attrs) {
+  public MFRotationLayout(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
-  public RotationLayout(Context context, AttributeSet attrs, int defStyle) {
+  public MFRotationLayout(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
   }
 

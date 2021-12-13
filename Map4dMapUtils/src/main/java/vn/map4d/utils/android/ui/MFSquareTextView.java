@@ -6,19 +6,19 @@ import android.util.AttributeSet;
 
 import androidx.appcompat.widget.AppCompatTextView;
 
-public class SquareTextView extends AppCompatTextView {
+public class MFSquareTextView extends AppCompatTextView {
   private int mOffsetTop = 0;
   private int mOffsetLeft = 0;
 
-  public SquareTextView(Context context) {
+  public MFSquareTextView(Context context) {
     super(context);
   }
 
-  public SquareTextView(Context context, AttributeSet attrs) {
+  public MFSquareTextView(Context context, AttributeSet attrs) {
     super(context, attrs);
   }
 
-  public SquareTextView(Context context, AttributeSet attrs, int defStyle) {
+  public MFSquareTextView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
   }
 

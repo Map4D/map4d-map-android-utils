@@ -10,12 +10,12 @@ import java.util.Set;
 import vn.map4d.utils.android.clustering.MFCluster;
 import vn.map4d.utils.android.clustering.MFClusterItem;
 import vn.map4d.utils.android.geometry.Point;
-import vn.map4d.utils.android.projection.SphericalMercatorProjection;
+import vn.map4d.utils.android.projection.MFSphericalMercatorProjection;
 
 /**
  * Groups markers into a grid.
  */
-public class GridBasedAlgorithm<T extends MFClusterItem> extends AbstractAlgorithm<T> {
+public class MFGridBasedAlgorithm<T extends MFClusterItem> extends MFAbstractAlgorithm<T> {
   private static final int DEFAULT_GRID_SIZE = 100;
   private final Set<T> mItems = Collections.synchronizedSet(new HashSet<T>());
   private int mGridSize = DEFAULT_GRID_SIZE;
@@ -107,7 +107,7 @@ public class GridBasedAlgorithm<T extends MFClusterItem> extends AbstractAlgorit
   @Override
   public Set<? extends MFCluster<T>> getClusters(double zoom) {
     long numCells = (long) Math.ceil(256 * Math.pow(2, zoom) / mGridSize);
-    SphericalMercatorProjection proj = new SphericalMercatorProjection(numCells);
+    MFSphericalMercatorProjection proj = new MFSphericalMercatorProjection(numCells);
 
     HashSet<MFCluster<T>> clusters = new HashSet<MFCluster<T>>();
     LongSparseArray<MFStaticCluster<T>> sparseArray = new LongSparseArray<MFStaticCluster<T>>();
