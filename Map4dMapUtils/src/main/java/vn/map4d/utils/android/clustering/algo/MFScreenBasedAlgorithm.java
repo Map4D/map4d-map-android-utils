@@ -9,7 +9,7 @@ import vn.map4d.utils.android.clustering.MFClusterItem;
  * @param <T>
  */
 
-public interface ScreenBasedAlgorithm<T extends MFClusterItem> extends Algorithm<T> {
+public interface MFScreenBasedAlgorithm<T extends MFClusterItem> extends MFAlgorithm<T> {
 
   boolean shouldReclusterOnMapMovement();
 

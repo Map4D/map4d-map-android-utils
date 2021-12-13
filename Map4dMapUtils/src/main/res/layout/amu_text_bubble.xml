@@ -4,7 +4,7 @@
   android:layout_height="wrap_content"
   android:orientation="vertical">
 
-  <vn.map4d.utils.android.ui.RotationLayout
+  <vn.map4d.utils.android.ui.MFRotationLayout
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:orientation="vertical">
@@ -19,6 +19,6 @@
       android:paddingRight="10dp"
       android:paddingBottom="5dp" />
 
-  </vn.map4d.utils.android.ui.RotationLayout>
+  </vn.map4d.utils.android.ui.MFRotationLayout>
 
 </LinearLayout>

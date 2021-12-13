@@ -16,13 +16,13 @@ import vn.map4d.utils.android.R;
 /**
  * Draws a bubble with a shadow, filled with any color.
  */
-class BubbleDrawable extends Drawable {
+class MFBubbleDrawable extends Drawable {
 
   private final Drawable mShadow;
   private final Drawable mMask;
   private int mColor = Color.WHITE;
 
-  public BubbleDrawable(Context context) {
+  public MFBubbleDrawable(Context context) {
     mMask = ContextCompat.getDrawable(context, R.drawable.amu_bubble_mask);
     mShadow = ContextCompat.getDrawable(context, R.drawable.amu_bubble_shadow);
   }

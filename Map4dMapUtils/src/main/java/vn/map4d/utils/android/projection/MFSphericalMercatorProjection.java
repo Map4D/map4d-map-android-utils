@@ -3,10 +3,10 @@ package vn.map4d.utils.android.projection;
 import vn.map4d.types.MFLocationCoordinate;
 import vn.map4d.utils.android.geometry.Point;
 
-public class SphericalMercatorProjection {
+public class MFSphericalMercatorProjection {
   final double mWorldWidth;
 
-  public SphericalMercatorProjection(final double worldWidth) {
+  public MFSphericalMercatorProjection(final double worldWidth) {
     mWorldWidth = worldWidth;
   }
 

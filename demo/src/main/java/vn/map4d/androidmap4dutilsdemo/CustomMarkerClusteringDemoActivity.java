@@ -25,7 +25,7 @@ import vn.map4d.utils.android.clustering.MFCluster;
 import vn.map4d.utils.android.clustering.MFClusterItem;
 import vn.map4d.utils.android.clustering.MFClusterManager;
 import vn.map4d.utils.android.clustering.view.MFDefaultClusterRenderer;
-import vn.map4d.utils.android.ui.IconGenerator;
+import vn.map4d.utils.android.ui.MFIconGenerator;
 
 /**
  * Demonstrates heavy customisation of the look of rendered clusters.
@@ -139,8 +139,8 @@ public class CustomMarkerClusteringDemoActivity extends BaseDemoActivity impleme
    * When there are multiple people in the cluster, draw multiple photos (using MultiDrawable).
    */
   private class PersonRenderer extends MFDefaultClusterRenderer<Person> {
-    private final IconGenerator mIconGenerator = new IconGenerator(getApplicationContext());
-    private final IconGenerator mClusterIconGenerator = new IconGenerator(getApplicationContext());
+    private final MFIconGenerator mIconGenerator = new MFIconGenerator(getApplicationContext());
+    private final MFIconGenerator mClusterIconGenerator = new MFIconGenerator(getApplicationContext());
     private final ImageView mImageView;
     private final ImageView mClusterImageView;
     private final int mDimension;

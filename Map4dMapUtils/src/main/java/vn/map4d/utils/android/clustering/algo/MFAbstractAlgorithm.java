@@ -8,7 +8,7 @@ import vn.map4d.utils.android.clustering.MFClusterItem;
 /**
  * Base Algorithm class that implements lock/unlock functionality.
  */
-public abstract class AbstractAlgorithm<T extends MFClusterItem> implements Algorithm<T> {
+public abstract class MFAbstractAlgorithm<T extends MFClusterItem> implements MFAlgorithm<T> {
 
   private final ReadWriteLock mLock = new ReentrantReadWriteLock();
 

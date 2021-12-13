@@ -12,7 +12,7 @@ import vn.map4d.androidmap4dutilsdemo.model.MyItem;
 import vn.map4d.map.camera.MFCameraUpdateFactory;
 import vn.map4d.types.MFLocationCoordinate;
 import vn.map4d.utils.android.clustering.MFClusterManager;
-import vn.map4d.utils.android.clustering.algo.NonHierarchicalViewBasedAlgorithm;
+import vn.map4d.utils.android.clustering.algo.MFNonHierarchicalViewBasedAlgorithm;
 
 public class VisibleClusteringDemoActivity extends BaseDemoActivity {
   private MFClusterManager<MyItem> mClusterManager;
@@ -30,7 +30,7 @@ public class VisibleClusteringDemoActivity extends BaseDemoActivity {
     }
 
     mClusterManager = new MFClusterManager<>(this, getMap());
-    mClusterManager.setAlgorithm(new NonHierarchicalViewBasedAlgorithm<>(widthDp, heightDp));
+    mClusterManager.setAlgorithm(new MFNonHierarchicalViewBasedAlgorithm<>(widthDp, heightDp));
 
     getMap().setOnCameraIdleListener(mClusterManager);
 

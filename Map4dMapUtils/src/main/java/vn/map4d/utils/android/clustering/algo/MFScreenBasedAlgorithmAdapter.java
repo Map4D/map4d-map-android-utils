@@ -7,11 +7,11 @@ import vn.map4d.map.camera.MFCameraPosition;
 import vn.map4d.utils.android.clustering.MFCluster;
 import vn.map4d.utils.android.clustering.MFClusterItem;
 
-public class ScreenBasedAlgorithmAdapter<T extends MFClusterItem> extends AbstractAlgorithm<T> implements ScreenBasedAlgorithm<T> {
+public class MFScreenBasedAlgorithmAdapter<T extends MFClusterItem> extends MFAbstractAlgorithm<T> implements MFScreenBasedAlgorithm<T> {
 
-  private Algorithm<T> mAlgorithm;
+  private MFAlgorithm<T> mAlgorithm;
 
-  public ScreenBasedAlgorithmAdapter(Algorithm<T> algorithm) {
+  public MFScreenBasedAlgorithmAdapter(MFAlgorithm<T> algorithm) {
     mAlgorithm = algorithm;
   }
 
