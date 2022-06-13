@@ -1024,6 +1024,7 @@ public class MFDefaultClusterRenderer<T extends MFClusterItem> implements MFClus
               markerOptions.position(item.getPosition());
             }
             onBeforeClusterItemRendered(item, markerOptions);
+            markerOptions.userData(item);
             marker = mClusterManager.getMarkerCollection().addMarker(markerOptions);
             markerWithPosition = new MarkerWithPosition(marker);
             mMarkerCache.put(item, marker);
